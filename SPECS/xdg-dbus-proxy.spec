@@ -1,11 +1,19 @@
 Name:           xdg-dbus-proxy
 Version:        0.1.3
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 Summary:        Filtering proxy for D-Bus connections
 
 License:        LGPLv2+
 URL:            https://github.com/flatpak/xdg-dbus-proxy/
 Source0:        https://github.com/flatpak/xdg-dbus-proxy/releases/download/%{version}/%{name}-%{version}.tar.xz
+
+# CVE-2026-94422
+# https://github.com/flatpak/xdg-dbus-proxy/commit/e5702fca4dba9600721921fbca2dbc39dc5ca400
+# https://github.com/flatpak/xdg-dbus-proxy/commit/fc027f759316fb2a6c45648200b6f100202eb84e
+# https://github.com/flatpak/xdg-dbus-proxy/commit/e4465a0dfe96da3b39929a30a1ac3a22b16223e3
+Patch0:         CVE-2026-94422-1-proxy-don-t-assume-that-only-returns-and-errors-have-a-reply-serial.patch
+Patch1:         CVE-2026-94422-2-proxy-make-it-clearer-which-direction-messages-are-going-in.patch
+Patch2:         CVE-2026-94422-3-proxy-only-allow-replies-to-go-to-the-correct-destination.patch
 
 BuildRequires: make
 BuildRequires:  docbook-style-xsl
@@ -38,6 +46,10 @@ to facilitate using it in other contexts.
 %{_mandir}/man1/xdg-dbus-proxy.1*
 
 %changelog
+* Mon Sep 28 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.1.3-1.1
+- Message filtering bypass via reply serial allows sandbox escape (CVE-2026-94422)
+  Resolves: RHEL-271548
+
 * Tue Mar 22 2022 Debarshi Ray <rishi@fedoraproject.org> - 0.1.3-1
 - Update to 0.1.3
 Resolves: #2060089
