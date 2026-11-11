@@ -46,9 +46,9 @@ to facilitate using it in other contexts.
 %{_mandir}/man1/xdg-dbus-proxy.1*
 
 %changelog
-* Mon Sep 28 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.1.5-4.1
+* Wed Nov 04 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.1.5-4.1
 - Message filtering bypass via reply serial allows sandbox escape (CVE-2026-94422)
-  Resolves: RHEL-271542
+  Resolves: RHEL-271541
 
 * Tue Oct 29 2024 Troy Dawson <tdawson@redhat.com> - 0.1.5-4
 - Bump release for October 2024 mass rebuild:
